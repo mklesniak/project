@@ -12,7 +12,7 @@ declare -ia l1
 
 for i in 0 1 .. $cyfry-1
 do
-read l1[i]
+#read l1[i]
 l1[i]=$(( $liczba1%10 ));
 liczba1=$(( $liczba1/10 ));
 done
@@ -32,6 +32,8 @@ echo  "W jakim systemie jest zapisana Twoja liczba?"
 read -e  baza1 
 
 echo "Ile ma cyfr?"
+
+read -e cyfry
 
 echo -n "Podaj liczbê:"
 
