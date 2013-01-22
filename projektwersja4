@@ -1,73 +1,72 @@
 #! /bin/bash
 
 function convert {
-baza1=$1
-liczba1=$2
-declare -ia l1
+ baza1=$1
+ liczba1=$2
+ declare -ia l1
 
-l1=$liczba1
+ l1=$liczba1
 
-e=$(echo $l1 | sed 's/\(.\)/\1 /g')
-l1=($e)
+ e=$(echo $l1 | sed 's/\(.\)/\1 /g')
+ l1=($e)
 
-liczba2=0
+ liczba2=0
 
-cyfry=${#l1[@]}
+ cyfry=${#l1[@]}
 
-for ((i=0; i<cyfry; i++)) do
-if [[ $((l1[$i])) -eq A ]]; then l1[$i]=10;
-else if [[ $((l1[$i])) -eq B ]]; then l1[$i]=11;
-else if [[ $((l1[$i])) -eq C ]]; then l1[$i]=12;
-else if [[ $((l1[$i])) -eq D ]]; then l1[$i]=13;
-else if [[ $((l1[$i])) -eq E ]]; then l1[$i]=14;
-else if [[ $((l1[$i])) -eq F ]]; then l1[$i]=15;
+ for ((i=0; i<cyfry; i++)) do
+  if [[ $((l1[$i])) -eq A ]]; then l1[$i]=10;
+   else if [[ $((l1[$i])) -eq B ]]; then l1[$i]=11;
+    else if [[ $((l1[$i])) -eq C ]]; then l1[$i]=12;
+     else if [[ $((l1[$i])) -eq D ]]; then l1[$i]=13;
+      else if [[ $((l1[$i])) -eq E ]]; then l1[$i]=14;
+       else if [[ $((l1[$i])) -eq F ]]; then l1[$i]=15;
 
-fi fi fi fi fi fi
+ fi fi fi fi fi fi
 
-liczba2=$(($(($liczba2*$baza1))+$((l1[$i]))));
-done
+   liczba2=$(($(($liczba2*$baza1))+$((l1[$i]))));
+  done
 
-convertResult=$liczba2
-
+ convertResult=$liczba2
 
 }
 
 function drugaczesc {
 
-baza2=$1
-liczba2=$2
-declare -ia l2
+ baza2=$1
+ liczba2=$2
+ declare -ia l2
 
-i=0
-while [[ $liczba2 != 0 ]]
-do
-l2[$i]=$(($liczba2%$baza2))
-liczba2=$(($liczba2/$baza2))
-i=$(($i+1))
-done
+ i=0
+ while [[ $liczba2 != 0 ]]
+  do
+   l2[$i]=$(($liczba2%$baza2))
+   liczba2=$(($liczba2/$baza2))
+   i=$(($i+1))
+  done
 
-echo "WYNIK:"
-for ((j=i-1; j>=0; j--))
+ echo "WYNIK:"
+ for ((j=i-1; j>=0; j--))
 
-do
+  do
 
-if [[ $((l2[$j])) -ge 10 ]]
-then
- case $((l2[$j]-10)) in
-   (0) echo -n "A" ;;
-   (1) echo -n "B" ;;
-   (2) echo -n "C" ;;
-   (3) echo -n "D" ;;
-   (4) echo -n "E" ;;
-   (5) echo -n "F" ;;
- esac
+   if [[ $((l2[$j])) -ge 10 ]]
+    then
+     case $((l2[$j]-10)) in
+      (0) echo -n "A" ;;
+      (1) echo -n "B" ;;
+      (2) echo -n "C" ;;
+      (3) echo -n "D" ;;
+      (4) echo -n "E" ;;
+      (5) echo -n "F" ;;
+    esac
 
- else
- echo -n "$((l2[$j]))"
- fi
+    else
+      echo -n "$((l2[$j]))"
+   fi
 
- done
- echo
+   done
+  echo
  }
 
  echo "W jakim systemie jest zapisana Twoja liczba?"
@@ -77,8 +76,6 @@ then
  echo "Na jaki system chcesz ja zamienic?"
  read  -e baza2
 
- convert $baza1 $liczba1
-
- # zostala nadana wartosc zmiennej  convertResult
+convert $baza1 $liczba1
 
 drugaczesc $baza2 $convertResult
